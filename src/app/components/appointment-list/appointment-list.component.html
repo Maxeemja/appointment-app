@@ -1,3 +1,24 @@
-<p>appointment-list works!</p>
-<p>{{ appointment.title }}</p>
-<p>{{ appointment.date | date : "dd/MMM/yyyy" }}</p>
+<div>
+  <input
+    placeholder="Appointment title"
+    type="text"
+    [(ngModel)]="newAppointmentTitle"
+  />
+  <input
+    placeholder="Appointment date"
+    type="date"
+    [(ngModel)]="newAppointmentDate"
+  />
+  <button (click)="addItem()">Add item</button>
+</div>
+
+<ul>
+  @for (appointment of appointments; track appointment.id; let idx = $index) {
+    <li>
+      {{ appointment.title }} | {{ appointment.date | date: "dd/MMM/yyyy" }}
+      <button (click)="deleteAppointment(idx)">Delete</button>
+    </li>
+  } @empty {
+    <p>There's no items</p>
+  }
+</ul>
