@@ -10,13 +10,11 @@ export class AppointmentListComponent {
   newAppointmentTitle: string = '';
   newAppointmentDate: Date = new Date();
 
-  appointments: Appointment[] = [
-    {
-      id: 1,
-      title: 'Buy a bread',
-      date: new Date(),
-    },
-  ];
+  appointments: Appointment[] = [];
+
+  ngOnInit() {
+    this.appointments = JSON.parse(localStorage.getItem('list') || '[]');
+  }
 
   addItem() {
     if (this.newAppointmentTitle && this.newAppointmentDate) {
@@ -30,10 +28,12 @@ export class AppointmentListComponent {
 
       this.newAppointmentDate = new Date();
       this.newAppointmentTitle = '';
+      localStorage.setItem('list', JSON.stringify(this.appointments));
     }
   }
 
   deleteAppointment(idx: number) {
     this.appointments = this.appointments.filter((_, index) => index !== idx);
+    localStorage.setItem('list', JSON.stringify(this.appointments));
   }
 }
