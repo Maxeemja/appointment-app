@@ -18,12 +18,14 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
+    "baseUrl": "./",
+    "paths": {
+      "@environments/*": ["./src/environments/*"]
+    },
     "module": "ES2022",
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
